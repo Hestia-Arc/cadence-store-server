@@ -8,11 +8,12 @@ import {
 } from "../services/productsService";
 
 // GET ALL PRODUCTS
-export async function index(response: Response) {
+export async function index(request: Request, response: Response) {
   try {
     const results = await getProducts();
 
     response.json({ data: results });
+    // console.log(results);
     // response.send("welcome")
   } catch (error: any) {
     console.log(`Error querying database: ${error}`);
@@ -29,6 +30,7 @@ export async function show(request: Request, response: Response) {
     const results = await getProduct(request.params.id);
 
     response.json({ data: results });
+    // console.log(results);
   } catch (error: any) {
     console.log(`Error querying database: ${error}`);
 

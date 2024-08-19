@@ -3,14 +3,14 @@ import { pool } from "../../config/database";
 
 // GET ALL PRODUCTS
 export async function getProducts() {
-  const products = await pool.query("SELECT * FROM product");
+  const products = await pool.query("SELECT * FROM products");
 
   return products.rows;
 }
 
 // GET A PRODUCT
 export async function getProduct(identifier: string) {
-  const products = await pool.query("SELECT * FROM product WHERE id = $1", [
+  const products = await pool.query("SELECT * FROM products WHERE id = $1", [
     identifier,
   ]);
 
@@ -20,7 +20,7 @@ export async function getProduct(identifier: string) {
 // CREATE A PRODUCT
 export async function createProduct(productData: object) {
   const newProduct = await pool.query(
-    "INSERT INTO product (productName) VALUES($1) RETURNING *",
+    "INSERT INTO products (productName) VALUES($1) RETURNING *",
     [productData]
   );
 
@@ -39,7 +39,7 @@ export async function updateProduct(identifier: string, data: object) {
 
 // DELETE A PRODUCT
 export async function deleteProduct(identifier: string) {
-  const products = await pool.query("SELECT FROM product WHERE id = $1", [
+  const products = await pool.query("SELECT FROM products WHERE id = $1", [
     identifier,
   ]);
 
